@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UFT-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Home</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript">
+        function preventBack() { window.history.forward(); }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () { null };
+    </script>
+</head>
+
+<body>
+    <div class= "wrapper">
+    <nav class= "navbar navbar-default navbar-expand-lg navbar-dark navbar-fixed-top">
+        <a class="navbar-brand" href="#">
+            <img src="/css/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+             Giga Tech Limited
+          </a>
+        <!-- Links -->
+        <ul class="navbar-nav ml-auto"> 
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    Lunch
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/menu">Menu</a>
+                    <a class="dropdown-item" href="/order">Order</a>
+                    <a class="dropdown-item" href="/history">Order History</a>
+                </div>
+            </li>
+            <!-- Links -->
+            <li class="nav-item">
+                <a class="nav-link" href="/report" >Report</a>
+            </li>
+            <li class= "nav-item">
+                <a class="nav-link" href="/logout">Log Out</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class= "container" id= "homeContainer">
+        <div class= "jumbotron">
+            <div class= "row">
+                <div class="col-md-3">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-header main-bg">
+                            <h5>Calender</h5>
+                        </div>
+                        <div class="card-body mx-auto">
+                        <iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showPrint=0&amp;showTabs=0&amp;showTz=0&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=en.bd%23holiday%40group.v.calendar.google.com&amp;color=%2329527A&amp;ctz=Asia%2FDhaka" style="border-width:0" width="250" height="300" frameborder="0" scrolling="no"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <div class= "col-md-6 m-auto">
+                    <h4>Welcome,  <%= name %>!</h4>
+
+                    <div class= "btn-toolbar justify-content-between">
+                    <a href= "/report"><button type= "button " class= "btn" id= "homeBtn">Write Report</button>
+            
+                    <a href= "/order"><button type= "button" class= "btn" id= "homeBtn">Order Food</button>
+                
+                    <a href= "/menu"><button type= "button" class= "btn" id= "homeBtn">See Menu</button>
+                    </div> 
+                </div>
+            </div>
+            </div>
+            </div>
+        <div class="push"></div>
+    </div>
+
+    <footer class= "footer">
+        Copyright &copy; 2020
+    </footer>
+
+     <!-- Script for jQuery -->
+     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+     <!-- Script for Popper.js -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+     <!-- Script for Bootstrap plugins -->
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+ 
+</body>
+</html>
