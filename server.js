@@ -38,6 +38,7 @@ mongoose.connect ('mongodb://localhost:27017/users', { useUnifiedTopology: true,
     .then(()=> console.log ('MongoDB connected'))
     .catch (err => console.log (err));
 
+
 var port = 3000;
 
 //view engine EJS
@@ -78,10 +79,10 @@ app.post('/send-email', function (req, res) {
         //to: req.body.to,
         to: 'monir@gigatechltd.com', //req.body.to, // list of receivers
         // to: 'maiza1497@gmail.com',
-        subject: req.body.subject, // Subject line
-        text: req.body.tasksAssigned + req.body.tasksCompleted,
+        subject: `Daily Report `,  //+ req.body.to, // Subject line
+        text: req.body.subject + req.body.tasksAssigned + req.body.tasksCompleted,
         // text: req.body.learnings,
-        html: `<p> <b>Tasks Assigned: </b> </p>` + req.body.tasksAssigned +  
+        html: `<b>Date: </b>` + req.body.subject +  `<p> <b>Tasks Assigned: </b> </p>` + req.body.tasksAssigned +  
         `<p><b> Tasks Completed: </b></p>` + req.body.tasksCompleted + `<p><b> My Learnings: </b></p>` + req.body.learnings // html body
     };
  
