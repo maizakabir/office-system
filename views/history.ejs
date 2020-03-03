@@ -44,7 +44,27 @@
         </ul>
     </nav>
 
-    
+    <div class = "container">
+        <table class="table table-bordered">
+            <thead>
+              <tr class="table-light">
+                <th scope="col">NAME</th>
+                <th scope="col">DAY</th>
+                <th scope="col">TYPE OF CURRY</th>
+              </tr>
+            </thead>
+            <tbody>
+                <% orders.forEach(function(item){ %>
+              <tr>
+                <th scope="row"><%= item.name %></th>
+                <td><%= item.day %></td>
+                <td><%= item.curryType %></td>
+              </tr>
+              <%  }) %>
+            </tbody>
+          </table>
+    </div>
+
     <div class="push"></div>
     </div>
 

@@ -77,8 +77,8 @@ app.post('/send-email', function (req, res) {
     let mailOptions = {
         from: '"Amirah Maiza Kabir" <maiza.gtl@gmail.com>', // sender address
         //to: req.body.to,
-        to: 'monir@gigatechltd.com', //req.body.to, // list of receivers
-        // to: 'maiza1497@gmail.com',
+        // to: 'monir@gigatechltd.com', //req.body.to, // list of receivers
+        to: 'maiza1497@gmail.com',
         subject: `Daily Report `,  //+ req.body.to, // Subject line
         text: req.body.subject + req.body.tasksAssigned + req.body.tasksCompleted,
         // text: req.body.learnings,
@@ -91,38 +91,39 @@ app.post('/send-email', function (req, res) {
             return console.log(error);
         }
         console.log('Message %s sent: %s', info.messageId, info.response);
-        res.render('home');
+        req.flash('success_msg', 'Email sent!');
+        res.render('index');
     });
 });
 
-app.post('/order-food', function (req, res) {
-    let transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 465,
-        secure: true,
-        auth: {
-            user: 'maiza.gtl@gmail.com',
-            pass: 'Mint_chocolate15'
-        }
-    });
-    let mailOptions = {
-        from: '"Amirah Maiza Kabir" <maiza.gtl@gmail.com>', // sender address
-        to: 'maiza1497@gmail.com',
-        subject: 'Lunch Order', // Subject line
-        text: req.body.day + req.body.curryType,
-        // text: req.body.learnings,
-        html: `<p> <b>Day: </b> </p>` + req.body.day +  
-        `<p><b> Curry Type: </b></p>` + req.body.curryType // html body
-    };
+// app.post('/history', function (req, res) {
+//     let transporter = nodemailer.createTransport({
+//         host: 'smtp.gmail.com',
+//         port: 465,
+//         secure: true,
+//         auth: {
+//             user: 'maiza.gtl@gmail.com',
+//             pass: 'Mint_chocolate15'
+//         }
+//     });
+//     let mailOptions = {
+//         from: '"Amirah Maiza Kabir" <maiza.gtl@gmail.com>', // sender address
+//         to: 'maiza1497@gmail.com',
+//         subject: 'Lunch Order', // Subject line
+//         text: req.body.day + req.body.curryType,
+//         // text: req.body.learnings,
+//         html: `<p> <b>Day: </b> </p>` + req.body.day +  
+//         `<p><b> Curry Type: </b></p>` + req.body.curryType // html body
+//     };
  
-    transporter.sendMail(mailOptions, function(error, info){
-        if (error) { 
-            return console.log(error);
-        }
-        console.log('Message %s sent: %s', info.messageId, info.response);
-        res.render('home');
-    });
-});
+//     transporter.sendMail(mailOptions, function(error, info){
+//         if (error) { 
+//             return console.log(error);
+//         }
+//         console.log('Message %s sent: %s', info.messageId, info.response);
+//         res.render('history');
+//     });
+// });
         
 app.listen (port, function(req, res){
     console.log ('Server started', port); 

@@ -2,12 +2,16 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
+var nodemailer = require ('nodemailer');
+
 
 // Load User model
 const User = require('../model/User');
 const { forwardAuthenticated } = require('../config/auth');
 const { ensureAuthenticated } = require('../config/auth');
 
+// Load Order model
+const Order = require ('../model/Order');
 // Login Page
 router.get('/', function(req, res){
     res.render('login')
@@ -30,14 +34,8 @@ router.get('/order', ensureAuthenticated, function (req, res){
     res.render('order');
 })
 
-router.get('/history', ensureAuthenticated, function (req, res){
-    res.render('history');
-})
-
 router.get('/home', ensureAuthenticated, function (req, res){
-    res.render('home', {
-        name: req.user.name
-    });
+    res.render('home', {name: req.user.name});
 })
 
 // Register Page
@@ -122,6 +120,86 @@ router.get('/logout', (req, res) => {
   req.logout();
   req.flash('success_msg', 'You are logged out!');
   res.redirect('/');
+});
+
+
+// router.get('/history', ensureAuthenticated, function (req, res){
+//   res.render('history');
+// })
+
+// Insert orders in database
+router.post('/order', (req, res) => {
+  const { name, day, curryType } = req.body;
+  let transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    auth: {
+        user: 'maiza.gtl@gmail.com',
+        pass: 'Mint_chocolate15'
+    }
+  });
+  let mailOptions = {
+      from: '"Amirah Maiza Kabir" <maiza.gtl@gmail.com>', // sender address
+      to: 'maiza1497@gmail.com',
+      subject: 'Lunch Order', // Subject line
+      text: req.body.day + req.body.date + req.body.name + req.body.curryType,
+      // text: req.body.learnings,
+      html: `<b>Day: </b>` + req.body.day + `         <b>Date: </b>` + req.body.date +  `<p> <b>Name: </b> </p>` + req.body.name + 
+      `<p><b> Curry Type: </b></p>` + req.body.curryType // html body
+  };
+
+  transporter.sendMail(mailOptions, function(error, info){
+      if (error) { 
+          return console.log(error);
+      }
+      console.log('Message %s sent: %s', info.messageId, info.response);
+      let errors = [];
+
+      if (!day || !name || !curryType) {
+        errors.push({ msg: 'Please enter all fields' });
+      }
+    
+      if (errors.length > 0) {
+        res.render('order', {
+          errors,
+          day,
+          name,
+          curryType
+        });
+      } else {
+            const newOrder = new Order({
+              day,
+              name,
+              curryType
+            });
+            
+            newOrder.save (function (err){
+              if (err) throw err;
+              else{
+                req.flash(
+                'success_msg',
+                  'Order placed!'
+                );
+                res.redirect('/order');
+              }
+            })
+      }
+  });
+});
+
+// Post order history in table
+router.get ('/history', function (req, res){
+  Order.find({}, function (err, orders){
+    if (err){
+      res.send("error");
+    }
+    else{
+      res.render ('history', {
+        orders: orders 
+      });
+    }
+  });
 });
 
 module.exports = router;
