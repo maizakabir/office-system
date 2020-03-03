@@ -77,8 +77,8 @@ app.post('/send-email', function (req, res) {
     let mailOptions = {
         from: '"Amirah Maiza Kabir" <maiza.gtl@gmail.com>', // sender address
         //to: req.body.to,
-        // to: 'monir@gigatechltd.com', //req.body.to, // list of receivers
-        to: 'maiza1497@gmail.com',
+        to: 'monir@gigatechltd.com', //req.body.to, // list of receivers
+        // to: 'maiza1497@gmail.com',
         subject: `Daily Report `,  //+ req.body.to, // Subject line
         text: req.body.subject + req.body.tasksAssigned + req.body.tasksCompleted,
         // text: req.body.learnings,
@@ -91,7 +91,6 @@ app.post('/send-email', function (req, res) {
             return console.log(error);
         }
         console.log('Message %s sent: %s', info.messageId, info.response);
-        req.flash('success_msg', 'Email sent!');
         res.render('index');
     });
 });
