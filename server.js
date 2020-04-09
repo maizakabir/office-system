@@ -77,13 +77,19 @@ app.post('/send-email', function (req, res) {
     let mailOptions = {
         from: '"Amirah Maiza Kabir" <maiza.gtl@gmail.com>', // sender address
         //to: req.body.to,
-        to: 'monir@gigatechltd.com', //req.body.to, // list of receivers
-        // to: 'maiza1497@gmail.com',
+        // to: 'monir@gigatechltd.com', //req.body.to, // list of receivers
+        to: 'maiza1497@gmail.com',
         subject: `Daily Report `,  //+ req.body.to, // Subject line
-        text: req.body.subject + req.body.tasksAssigned + req.body.tasksCompleted,
+        text:  req.body.subject + req.body.tasksAssigned + req.body.tasksCompleted,
         // text: req.body.learnings,
-        html: `<b>Date: </b>` + req.body.subject +  `<p> <b>Tasks Assigned: </b> </p>` + req.body.tasksAssigned +  
-        `<p><b> Tasks Completed: </b></p>` + req.body.tasksCompleted + `<p><b> My Learnings: </b></p>` + req.body.learnings // html body
+        html: req.body.subject +  `<p> <b>Tasks Assigned: </b> </p>` + req.body.tasksAssigned +  
+        `<p><b> Tasks Completed: </b></p>` + req.body.tasksCompleted + `<p><b> My Learnings: </b></p>` + req.body.learnings, // html body
+        attachments: [
+            {
+                filename: req.body.filename,
+                path: req.body.filepath
+            }
+        ]
     };
  
     transporter.sendMail(mailOptions, function(error, info){

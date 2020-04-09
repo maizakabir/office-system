@@ -58,7 +58,7 @@
             <div class= "row"> 
                 <div class="form-group col">
                     <label for="to"><b> Name: </b></label>
-                    <input type="text" class="form-control" name="to"  required placeholder="eg. John Doe">
+                    <!-- <input type="text" class="form-control" name="to"  required placeholder="eg. John Doe"> -->
                 </div>
 
                 <div class="form-group col">
@@ -77,9 +77,21 @@
                     <textarea class="form-control" required name="tasksCompleted" rows="5"></textarea>
                 </div>
             </div>
+
             <div class="form-group">
                 <label for="learnings" id= "titles"><b>My Learnings</b></label>
                 <textarea class="form-control" required name="learnings" rows="8"></textarea>
+            </div>
+            <p>Attachment: </p>
+            <div class= "row">
+                <div class="form-group col">
+                    <label for="filename" id= "titles"><b>File Name:</b></label>
+                    <textarea class="form-control" required name="filename" rows="1" placeholder="filename.txt"></textarea>
+                </div>
+                <div class="form-group col">
+                    <label for="filepath" id= "titles"><b>File Path:</b></label>
+                    <textarea class="form-control" required name="filepath" rows="1" placeholder="C:/Users/filename.txt"></textarea>
+                </div>
             </div>
             <button type="submit" class="btn">Submit</button>
         </form>
