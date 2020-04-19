@@ -56,7 +56,7 @@ app.use (passport.initialize());
 app.use (passport.session());
 
 //Routes: users.js
-app.use ('/login', require ('./routes/users'));
+app.use ('/todo', require ('./routes/users'));
 app.use ('/report', require ('./routes/users'));
 app.use ('/menu', require ('./routes/users'));
 app.use ('/order', require ('./routes/users'));

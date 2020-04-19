@@ -13,7 +13,7 @@ const { ensureAuthenticated } = require('../config/auth');
 // Load Order model
 const Order = require ('../model/Order');
 // Login Page
-router.get('/login', function(req, res){
+router.get('/todo', function(req, res){
     res.render('login')
 });
 
