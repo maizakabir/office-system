@@ -39,7 +39,7 @@ mongoose.connect ('mongodb://localhost:27017/users', { useUnifiedTopology: true,
     .catch (err => console.log (err));
 
 
-var port = 3000;
+var port = process.env.PORT || 3000;
 
 //view engine EJS
 app.set ('view engine', 'ejs');
