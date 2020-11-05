@@ -137,7 +137,7 @@ router.post('/order', (req, res) => {
     secure: true,
     auth: {
         user: 'maizagtl@gmail.com',
-        pass: 'Cookiedough.12'
+        pass: ''
     }
   });
   let mailOptions = {
