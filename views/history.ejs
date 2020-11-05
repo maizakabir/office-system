@@ -14,7 +14,7 @@
     </script>
 </head>
 
-<body>
+<body id="bg">
     <div class= "wrapper">
     <nav class= "navbar navbar-default navbar-expand-lg navbar-dark navbar-fixed-top">
         <a class="navbar-brand" href="/home">
@@ -43,13 +43,16 @@
             </li>
         </ul>
     </nav>
+    <div class= "container"> 
+        <h2><b> Order History</h2></b>
+    </div>
 
     <div class = "container">
-        <table class="table table-bordered">
+        <table class="table table-bordered table-striped">
             <thead>
               <tr class="table-light">
                 <th scope="col">NAME</th>
-                <th scope="col">DAY</th>
+                <th scope="col">DATE</th>
                 <th scope="col">TYPE OF CURRY</th>
               </tr>
             </thead>
@@ -57,7 +60,7 @@
                 <% orders.forEach(function(item){ %>
               <tr>
                 <th scope="row"><%= item.name %></th>
-                <td><%= item.day %></td>
+                <td><%= item.date %></td>
                 <td><%= item.curryType %></td>
               </tr>
               <%  }) %>
@@ -72,12 +75,7 @@
         Copyright &copy; 2020
     </footer>
 
-    <script>
-        function foo() {
-            alert("Order has been placed!");
-        return true;
-}
-    </script>
+    
 
      <!-- Script for jQuery -->
      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

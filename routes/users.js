@@ -12,8 +12,9 @@ const { ensureAuthenticated } = require('../config/auth');
 
 // Load Order model
 const Order = require ('../model/Order');
+
 // Login Page
-router.get('/todo', function(req, res){
+router.get('/', function(req, res){
     res.render('login')
 });
 
@@ -135,13 +136,13 @@ router.post('/order', (req, res) => {
     port: 465,
     secure: true,
     auth: {
-        user: 'maiza.gtl@gmail.com',
-        pass: 'Mint_chocolate15'
+        user: 'maizagtl@gmail.com',
+        pass: 'Cookiedough.12'
     }
   });
   let mailOptions = {
-      from: '"Amirah Maiza Kabir" <maiza.gtl@gmail.com>', // sender address
-      to: 'maiza1497@gmail.com',
+      from: '"Amirah Maiza Kabir" <maizagtl@gmail.com>', // sender address
+      to: 'maizagtl@gmail.com',
       subject: 'Lunch Order', // Subject line
       text: req.body.day + req.body.date + req.body.name + req.body.curryType,
       // text: req.body.learnings,

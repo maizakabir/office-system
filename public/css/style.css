@@ -1,8 +1,12 @@
 #bg{
-    background-image: linear-gradient(rgb(188, 194, 214), rgb(68, 64, 128));
+    background-color:  rgb(68, 64, 128);
     height: 100%;
 }
 
+#titles{
+    color: #f9f1f1;
+    font-weight: normal;
+}
 
 .container{
     padding: 16px;
@@ -11,7 +15,6 @@
 #loginForm{
     padding: 20 px;
     margin-top: 70px;
-    width: 850px;
     margin-bottom: 70px;
 }
 
@@ -64,7 +67,7 @@
 }
 
 #loginButton{
-    width: 390px;
+    width: 443px;
     height: 45px;
     text-align: center;
     margin-bottom: 5px;
@@ -139,7 +142,15 @@ html, body {
   width:210px;
   text-align:center;
   border-left:1px solid #DDDCD8;
+  list-style-type: none;
 }
+
+#menuList1{
+    float:left;
+    width:210px;
+    text-align:center;
+    list-style-type: none;
+  }
 
 .top {
   background-color:#EAE9E4;
@@ -192,4 +203,8 @@ p {
 
 .pink {
   background-color:#7986cb;
+}
+
+.table{
+    text-align: center !important;
 }

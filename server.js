@@ -56,7 +56,7 @@ app.use (passport.initialize());
 app.use (passport.session());
 
 //Routes: users.js
-app.use ('/todo', require ('./routes/users'));
+app.use ('/', require ('./routes/users'));
 app.use ('/report', require ('./routes/users'));
 app.use ('/menu', require ('./routes/users'));
 app.use ('/order', require ('./routes/users'));
@@ -64,32 +64,27 @@ app.use ('/register', require ('./routes/users'));
 app.use ('/home', require ('./routes/users'));
 app.use ('/history', require ('./routes/users'));
 
+//Nodemailer: sending report
 app.post('/send-email', function (req, res) {
     let transporter = nodemailer.createTransport({
         host: 'smtp.gmail.com',
         port: 465,
         secure: true,
         auth: {
-            user: 'maiza.gtl@gmail.com',
-            pass: 'Mint_chocolate15'
+            user: 'maizagtl@gmail.com',
+            pass: 'Cookiedough.12'
         }
     });
     let mailOptions = {
-        from: '"Amirah Maiza Kabir" <maiza.gtl@gmail.com>', // sender address
-        //to: req.body.to,
-        to: 'monir@gigatechltd.com', //req.body.to, // list of receivers
-        // to: 'maiza1497@gmail.com',
+        from: '"Amirah Maiza Kabir" <maizagtl@gmail.com>', // sender address
+        to: req.body.to,
+        // to: 'monir@gigatechltd.com', //req.body.to, // list of receivers
         subject: `Daily Report `,  //+ req.body.to, // Subject line
-        text:  req.body.subject + req.body.tasksAssigned + req.body.tasksCompleted,
+        text:  req.body.subject  + req.body.tasksAssigned + req.body.tasksCompleted,
         // text: req.body.learnings,
-        html: req.body.subject +  `<p> <b>Tasks Assigned: </b> </p>` + req.body.tasksAssigned +  
+        html:  `<p> <b>Date: </b> </p>` + req.body.subject +  `<p> <b>Tasks Assigned: </b> </p>` + req.body.tasksAssigned +  
         `<p><b> Tasks Completed: </b></p>` + req.body.tasksCompleted + `<p><b> My Learnings: </b></p>` + req.body.learnings, // html body
-        attachments: [
-            {
-                filename: req.body.filename,
-                path: req.body.filepath
-            }
-        ]
+    
     };
  
     transporter.sendMail(mailOptions, function(error, info){
@@ -97,38 +92,14 @@ app.post('/send-email', function (req, res) {
             return console.log(error);
         }
         console.log('Message %s sent: %s', info.messageId, info.response);
-        res.render('index');
+        req.flash(
+            'success_msg',
+              'Report submitted.'
+            );
+        res.redirect('/report');
     });
 });
 
-// app.post('/history', function (req, res) {
-//     let transporter = nodemailer.createTransport({
-//         host: 'smtp.gmail.com',
-//         port: 465,
-//         secure: true,
-//         auth: {
-//             user: 'maiza.gtl@gmail.com',
-//             pass: 'Mint_chocolate15'
-//         }
-//     });
-//     let mailOptions = {
-//         from: '"Amirah Maiza Kabir" <maiza.gtl@gmail.com>', // sender address
-//         to: 'maiza1497@gmail.com',
-//         subject: 'Lunch Order', // Subject line
-//         text: req.body.day + req.body.curryType,
-//         // text: req.body.learnings,
-//         html: `<p> <b>Day: </b> </p>` + req.body.day +  
-//         `<p><b> Curry Type: </b></p>` + req.body.curryType // html body
-//     };
- 
-//     transporter.sendMail(mailOptions, function(error, info){
-//         if (error) { 
-//             return console.log(error);
-//         }
-//         console.log('Message %s sent: %s', info.messageId, info.response);
-//         res.render('history');
-//     });
-// });
         
 app.listen (port, function(req, res){
     console.log ('Server started', port); 

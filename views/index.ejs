@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/style.css">
+    <!-- prevents user from going to the previous page using back button on browser -->
     <script type="text/javascript">
         function preventBack() { window.history.forward(); }
         setTimeout("preventBack()", 0);
@@ -51,19 +52,19 @@
         <div>
             <!-- Flash messages -->
             <%- include ('./partials/messages.ejs') %>
-            <h2 class="text-center" id= "titles">Daily Report</h2>
+            <h2 class="text-center" style="color: #fffff2">Daily Report</h2>
         </div>
 
         <form action= "/send-email" method= "post">
             <div class= "row"> 
                 <div class="form-group col">
-                    <label for="to"><b> Name: </b></label>
-                    <!-- <input type="text" class="form-control" name="to"  required placeholder="eg. John Doe"> -->
+                    <label for="to" id= "titles"><b> To: </b></label>
+                    <input type="text" class="form-control" name="to"  required placeholder="e.g. example@gmail.com">
                 </div>
 
                 <div class="form-group col">
                     <label for="subject" id= "titles"><b>Date:</b></label>
-                    <input type="text" class="form-control" name="subject" required placeholder="eg. 1/3/2020">
+                    <input type="text" class="form-control" name="subject" required placeholder="e.g. 1/3/2020">
                 </div>
             </div>
 
@@ -80,19 +81,9 @@
 
             <div class="form-group">
                 <label for="learnings" id= "titles"><b>My Learnings</b></label>
-                <textarea class="form-control" required name="learnings" rows="8"></textarea>
+                <textarea class="form-control" required name="learnings" rows="10"></textarea>
             </div>
-            <p>Attachment: </p>
-            <div class= "row">
-                <div class="form-group col">
-                    <label for="filename" id= "titles"><b>File Name:</b></label>
-                    <textarea class="form-control"  name="filename" rows="1" placeholder="filename.txt"></textarea>
-                </div>
-                <div class="form-group col">
-                    <label for="filepath" id= "titles"><b>File Path:</b></label>
-                    <textarea class="form-control"  name="filepath" rows="1" placeholder="C:/Users/filename.txt"></textarea>
-                </div>
-            </div>
+            
             <button type="submit" class="btn">Submit</button>
         </form>
     </div>
